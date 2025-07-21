@@ -37,17 +37,17 @@ local test_opts = {
 arg = {"arg1", "--help", "--value=5", "--value2", "50", "--test"}
 local opts, args = parse_args(test_opts)
 
-print(opts.test)
 ut.assert_equal(#args, 1)
 ut.assert_equal(args[1], "arg1")
 
+ut.assert(opts.test)
 ut.assert(opts.help)
 ut.assert(not opts.version)
 ut.assert(opts.test)
 ut.assert_equal(opts.value, "5")
 ut.assert_equal(opts.value2, "50")
 
-generate_completion("test_cmd", test_opts)
+--generate_completion("test_cmd", test_opts)
 
 local version = "1.0.0"
 local usage = "test_cmd " .. version .. [[
@@ -60,4 +60,4 @@ Usage:
 ]] .. generate_usage(test_opts) .. [[
 
 https://github.com/Shivix/lualib.lua]]
-print(usage)
+--print(usage)

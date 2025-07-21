@@ -1,5 +1,7 @@
 local M = {}
 
+local core = require("lualib.core")
+
 local function random_string(length)
     local chars = "abcdefghijklmnopqrstuvwxyz0123456789"
     local result = ""
@@ -12,7 +14,7 @@ end
 
 local function tmp_file(prefix, suffix)
     math.randomseed(os.time())
-    local path = "/tmp/" .. (prefix or "lualib_") .. random_string() .. suffix
+    local path = "/tmp/" .. (prefix or "lualib_") .. random_string() .. (suffix or "")
 
     local file = assert(io.open(path, "w+"))
 
@@ -35,5 +37,6 @@ local function tmp_file(prefix, suffix)
 end
 
 M.tmp_file = tmp_file
+M.dir_exists = core.dir_exists
 
 return M

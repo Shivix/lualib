@@ -49,8 +49,8 @@ local function generate_completion(cmd_name, defined_opts)
     for _, opt in ipairs(defined_opts) do
         local short = opt.short and "-s " .. opt.short or ""
         local value = opt.value and "-r" or ""
-        local description = opt.description and "-d " .. opt.description or ""
-        print(string.format("complete -c %s -l %s %s %s '%s'", cmd_name, opt.long, short, value, description))
+        local description = opt.description and string.format("-d %q", opt.description) or ""
+        print(string.format("complete -c %s -l %s %s %s %s", cmd_name, opt.long, short, value, description))
     end
 end
 

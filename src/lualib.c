@@ -13,9 +13,21 @@ int dir_exists(lua_State *L) {
     return 1;
 }
 
+int exists(lua_State *L) {
+    const char *path = luaL_checkstring(L, 1);
+    struct stat st;
+    if (stat(path, &st) == 0) {
+        lua_pushboolean(L, 1);
+    } else {
+        lua_pushboolean(L, 0);
+    }
+    return 1;
+}
+
 int luaopen_lualib_core(lua_State *L) {
     luaL_Reg funcs[] = {
         {"dir_exists", dir_exists},
+        {"exists", exists},
         {NULL, NULL}
     };
     luaL_newlib(L, funcs);

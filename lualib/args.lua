@@ -9,6 +9,7 @@ local function get_opt(arg_name, defined_opts)
     return nil
 end
 
+-- TODO: Support -abc
 local function parse_args(defined_opts)
     local parsedArgs = {}
     local opts = {}

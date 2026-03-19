@@ -38,5 +38,6 @@ end
 
 M.tmp_file = tmp_file
 M.dir_exists = core.dir_exists
+M.exists = core.exists
 
 return M

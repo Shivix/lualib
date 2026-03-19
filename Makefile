@@ -1,8 +1,11 @@
 SRC = lualib/
-INSTALL_DIR = /usr/local/lib/lua/5.4/
+PREFIX ?= /usr/local/
+LUA_VERSION ?= 5.4
+INSTALL_DIR = bin/
+INSTALL_DIR = $(PREFIX)lib/lua/$(LUA_VERSION)/
 
 build:
-	gcc -O3 -Wall -shared -fPIC -o lualib/core.so src/lualib.c -I/usr/include/lua5.4
+	gcc -O3 -Wall -shared -fPIC -o lualib/core.so src/lualib.c -I/usr/include/lua$(LUA_VERSION)
 
 install: build
 	mkdir -p $(INSTALL_DIR)
